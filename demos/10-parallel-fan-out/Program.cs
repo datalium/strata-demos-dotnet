@@ -22,7 +22,9 @@
 //
 // The branches are async (Func<TState, NodeContext, CancellationToken, ValueTask<TState>>), so a
 // cancelled sibling really stops: its Task.Delay throws. A sync branch can't see the cancellation;
-// it would run on and have its result discarded.
+// it would run on and have its result discarded. The engine doesn't wait for a branch it has given
+// up on (design/26): the run can return a moment before the cancelled call notices its token, so
+// the demo waits for that call to stop before counting it.
 //
 // No live service and no LLM -- the services are deterministic stand-ins (a delay and a canned
 // answer) so the demo runs offline. Timings are measured, so the millisecond figures printed vary
@@ -73,6 +75,7 @@ tracker = new Tracker();
 services = NewServices(tracker, Fault.None, new Fault(TimeoutFirst: 1), Fault.None);
 graph = BuildTripGraph(services, RecoveryPolicy.Retry(2));
 result = await graph.RunAsync("trip-2", TripPlan.New("Porto"), store);
+await WaitForCancelled(services.Flights);
 completed = ExpectCompleted(result);
 Console.WriteLine(
     $"  Completed. Service calls -- flights: {services.Flights.Calls}, hotels: {services.Hotels.Calls}, weather: {services.Weather.Calls}.");
@@ -92,6 +95,7 @@ tracker = new Tracker();
 services = NewServices(tracker, Fault.None, new Fault(RejectReason: "no rooms left on these dates"), Fault.None);
 graph = BuildTripGraph(services, RecoveryPolicy.Retry(3).WithFallback("UseCachedPlan"));
 result = await graph.RunAsync("trip-3", TripPlan.New("Madeira"), store);
+await WaitForCancelled(services.Flights);
 completed = ExpectCompleted(result);
 Console.WriteLine(
     $"  Fell back after {services.TotalCalls} service call(s) in total -- a fatal error skips all 3 retries.");
@@ -115,6 +119,7 @@ tracker = new Tracker();
 services = NewServices(tracker, Fault.None, new Fault(RejectReason: "no rooms left on these dates"), Fault.None);
 graph = BuildTripGraph(services, RecoveryPolicy.Retry(3));
 result = await graph.RunAsync("trip-4", TripPlan.New("Madeira"), store);
+await WaitForCancelled(services.Flights);
 if (result is not GraphExecutionResult<TripPlan>.NodeFailed failed)
 {
     throw new InvalidOperationException($"expected NodeFailed, got: {result}");
@@ -292,6 +297,17 @@ static void Check(bool condition, string message)
     if (!condition)
     {
         throw new InvalidOperationException(message);
+    }
+}
+
+// The engine stops awaiting a branch it has given up on, so a run can return before the
+// cancelled call has noticed its token. Give it up to 2 s to stop; the checks then say whether it did.
+static async Task WaitForCancelled(Service service)
+{
+    var waited = Stopwatch.StartNew();
+    while (service.Cancelled == 0 && waited.ElapsedMilliseconds < 2000)
+    {
+        await Task.Delay(10);
     }
 }
 
