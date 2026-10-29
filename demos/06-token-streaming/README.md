@@ -11,7 +11,7 @@ for a model that doesn't exist, to show a provider fault failing the node.
 Pairs with [`03-llm-tool-calling`](../03-llm-tool-calling): the same OpenAI
 client, a model node instead of an agent.
 
-This demo makes real, billed calls to the OpenAI API. It and demo 03 are
+By default this demo makes real, billed calls to the OpenAI API. [With a local model](#with-a-local-model) it costs nothing. It and demo 03 are
 the only demos that do.
 
 ## What it demonstrates
@@ -80,8 +80,40 @@ On Windows PowerShell: `$env:OPENAI_API_KEY = "sk-..."`. See
 [demo 03's README](../03-llm-tool-calling/README.md#setup) for making it
 persist.
 
-Without `OPENAI_API_KEY` set, the demo prints a short setup message to
+Without `OPENAI_API_KEY` or `OPENAI_BASE_URL` set, the demo prints a short setup message to
 stderr and exits with code 1, before making any network call.
+
+### With a local model
+
+Any OpenAI-compatible server works instead of OpenAI: Ollama, vLLM, LM Studio and others. A run then costs nothing. Set `OPENAI_BASE_URL` to the server's address, up to `/v1`, and `OPENAI_MODEL` to a model it serves. A key is optional: `OPENAI_API_KEY` is sent if it's set. With [Ollama](https://ollama.com):
+
+```bash
+ollama pull qwen2.5:3b
+export OPENAI_BASE_URL=http://localhost:11434/v1
+export OPENAI_MODEL=qwen2.5:3b
+```
+
+The repo's **Live-model demos** workflow runs this demo the same way, against Ollama on the GitHub runner. This is its run on 2026-10-29 (`qwen2.5:3b`, Ollama 0.40.4). The wording varies from run to run:
+
+```
+=== Streaming a live answer, one token at a time ===
+
+[node start] AnswerQuestion
+Rust's borrow checker is unique compared to garbage collection in that it operates entirely at compile time rather than runtime, ensuring memory safety and preventing common memory errors like null pointer dereferencing and use after free before a program even runs. Unlike garbage collection, which typically occurs during runtime, Rust's borrow checker tracks and enforces ownership and immutability of data, allowing for deterministic and safe concurrency without the need for explicit memory management functions.
+[node end]   AnswerQuestion
+[node start] SummarizeAnswer
+[node end]   SummarizeAnswer
+
+=== Done ===
+token_chunks: 88
+answer_char_count: 517
+
+=== A provider fault: asking for model 'strata-demo-no-such-model' ===
+
+node failed: AnswerQuestion, after 1 attempt(s)
+message: model call failed (404): HTTP 404 (not_found_error: )
+chunks the consumer saw: NodeStart, Error
+```
 
 ## Run it
 

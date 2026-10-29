@@ -54,7 +54,7 @@ default paths, mode names) without changing the twin too.
   real provider — see [`03-llm-tool-calling`](demos/03-llm-tool-calling) and
   [`06-token-streaming`](demos/06-token-streaming), the two demos that do
   (an OpenAI `IChatClient` from `Microsoft.Extensions.AI.OpenAI` passed to
-  `Datalium.Strata.AI`, gated on `OPENAI_API_KEY`). Keep that pattern
+  `Datalium.Strata.AI`, gated on `OPENAI_API_KEY`, or `OPENAI_BASE_URL` for a local OpenAI-compatible server). Keep that pattern
   contained to demos that exist specifically to show it off; don't let it
   creep into otherwise-offline demos. A demo about `Datalium.Strata.AI`
   itself (agents, model routes, memory) uses a small scripted `IChatClient`
