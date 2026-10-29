@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Datalium.Strata.Demos.ToolCalling</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Datalium.Strata ships the [StrataTool] source generator as an analyzer, so the tools in
+         Tools.cs get their generated dispatch code with no other reference. -->
+    <PackageReference Include="Datalium.Strata" />
+    <PackageReference Include="Datalium.Strata.Storage" />
+  </ItemGroup>
+
+</Project>

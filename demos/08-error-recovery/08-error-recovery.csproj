@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Datalium.Strata.Demos.ErrorRecovery</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Datalium.Strata" />
+    <PackageReference Include="Datalium.Strata.Storage" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- FakeTimeProvider: the retry backoff waits on a clock the demo moves forward, so it never sleeps. -->
+    <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
+  </ItemGroup>
+
+</Project>

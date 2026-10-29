@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Datalium.Strata.Demos.RunScheduler</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- A fake clock, so how long each run queued is an exact figure, not a measurement. -->
+    <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Datalium.Strata" />
+    <PackageReference Include="Datalium.Strata.Storage" />
+  </ItemGroup>
+
+</Project>

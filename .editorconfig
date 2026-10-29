@@ -1,0 +1,6 @@
+root = true
+
+# The repo's files are LF. Without this, `dotnet format` on Windows expects CRLF
+# for some lines (e.g. a comment inside a fluent builder chain) and fails.
+[*]
+end_of_line = lf

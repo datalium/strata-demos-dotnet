@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Datalium.Strata.Demos.ThreadLeases</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Datalium.Strata" />
+    <PackageReference Include="Datalium.Strata.Storage" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- FakeTimeProvider: leases expire and renew when the demo moves the clock, not after real waits. -->
+    <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
+  </ItemGroup>
+
+</Project>

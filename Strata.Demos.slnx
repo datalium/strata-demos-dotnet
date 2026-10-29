@@ -1,0 +1,33 @@
+<Solution>
+  <Folder Name="/demos/">
+    <Project Path="demos/01-hello-agent/01-hello-agent.csproj" />
+    <Project Path="demos/02-tool-calling/02-tool-calling.csproj" />
+    <Project Path="demos/03-llm-tool-calling/03-llm-tool-calling.csproj" />
+    <Project Path="demos/04-multi-node-graph/04-multi-node-graph.csproj" />
+    <Project Path="demos/05-hitl-interruption/05-hitl-interruption.csproj" />
+    <Project Path="demos/06-token-streaming/06-token-streaming.csproj" />
+    <Project Path="demos/07-graph-validation/07-graph-validation.csproj" />
+    <Project Path="demos/08-error-recovery/08-error-recovery.csproj" />
+    <Project Path="demos/09-cross-language-interop/09-cross-language-interop.csproj" />
+    <Project Path="demos/10-parallel-fan-out/10-parallel-fan-out.csproj" />
+    <Project Path="demos/11-backpressure/11-backpressure.csproj" />
+    <Project Path="demos/12-pluggable-storage/12-pluggable-storage.csproj" />
+    <Project Path="demos/13-subgraph-composition/13-subgraph-composition.csproj" />
+    <Project Path="demos/14-graph-ci-gate/14-graph-ci-gate.csproj" />
+    <Project Path="demos/15-async-and-cancellation/15-async-and-cancellation.csproj" />
+    <Project Path="demos/16-loop-circuit-breaker/16-loop-circuit-breaker.csproj" />
+    <Project Path="demos/17-parallel-joins/17-parallel-joins.csproj" />
+    <Project Path="demos/18-map-fan-out/18-map-fan-out.csproj" />
+    <Project Path="demos/19-waits-and-timers/19-waits-and-timers.csproj" />
+    <Project Path="demos/20-durable-execution/20-durable-execution.csproj" />
+    <Project Path="demos/21-thread-leases/21-thread-leases.csproj" />
+    <Project Path="demos/22-graph-identity/22-graph-identity.csproj" />
+    <Project Path="demos/23-agent-tool-loop/23-agent-tool-loop.csproj" />
+    <Project Path="demos/24-model-routes/24-model-routes.csproj" />
+    <Project Path="demos/25-long-term-memory/25-long-term-memory.csproj" />
+    <Project Path="demos/26-tool-registry-and-middleware/26-tool-registry-and-middleware.csproj" />
+    <Project Path="demos/27-run-observability/27-run-observability.csproj" />
+    <Project Path="demos/28-hosting/28-hosting.csproj" />
+    <Project Path="demos/29-run-scheduler/29-run-scheduler.csproj" />
+  </Folder>
+</Solution>
