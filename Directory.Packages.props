@@ -19,11 +19,11 @@
   <ItemGroup>
     <!-- The official OpenAI IChatClient (demos 03 and 06). Its version matches the
          Microsoft.Extensions.AI.Abstractions 10.10.1 that Datalium.Strata.AI references. -->
-    <PackageVersion Include="Microsoft.Extensions.AI.OpenAI" Version="10.10.1" />
+    <PackageVersion Include="Microsoft.Extensions.AI.OpenAI" Version="10.11.0" />
     <!-- The Generic Host itself (demo 28). Datalium.Strata.Hosting references only the abstractions. -->
-    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.14" />
     <!-- FakeTimeProvider, for the demos that move a clock by hand instead of waiting. -->
-    <PackageVersion Include="Microsoft.Extensions.TimeProvider.Testing" Version="10.10.0" />
+    <PackageVersion Include="Microsoft.Extensions.TimeProvider.Testing" Version="10.11.0" />
   </ItemGroup>
 
 </Project>
