@@ -1,0 +1,38 @@
+# Runs the two demos that call a live OpenAI model (03 and 06).
+# Manual only: each run makes real, billed API calls.
+name: Live-model demos
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Check the API key is available
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::error::OPENAI_API_KEY is not available to this repository."
+            exit 1
+          fi
+
+      - name: Build
+        run: dotnet build Strata.Demos.slnx --configuration Release
+
+      - name: 03 llm-tool-calling
+        run: dotnet run --no-build --configuration Release --project demos/03-llm-tool-calling/03-llm-tool-calling.csproj
+
+      - name: 06 token-streaming
+        run: dotnet run --no-build --configuration Release --project demos/06-token-streaming/06-token-streaming.csproj
