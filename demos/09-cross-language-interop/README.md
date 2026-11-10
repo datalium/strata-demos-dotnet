@@ -141,7 +141,7 @@ dotnet run --project demos/09-cross-language-interop/09-cross-language-interop.c
 ```
 
 **Inspect the file with the `strata` CLI** (the binary from the
-[`v0.9.0-preview.1` release](https://github.com/datalium/strata/releases/tag/v0.9.0-preview.1); verified with 0.9)
+[`v0.9.0-preview.2` release](https://github.com/datalium/strata/releases/tag/v0.9.0-preview.2); verified with 0.9)
 
 ```bash
 strata thread list --storage <path-printed-by-freeze>

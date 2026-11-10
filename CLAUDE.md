@@ -15,7 +15,7 @@ The demos build from Strata's **published NuGet packages** (`Datalium.Strata`,
 once, in `Directory.Packages.props` (central package management; Strata's
 four share `$(StrataVersion)`), and a demo's `.csproj` has versionless
 `<PackageReference>`s. `nuget.config` restores from nuget.org only. The demos
-target Strata **0.9** (`0.9.0-preview.1`); `CHANGELOG.md` in
+target Strata **0.9** (`0.9.0-preview.2`); `CHANGELOG.md` in
 [`datalium/strata`](https://github.com/datalium/strata) says what changed
 between versions. The `strata` CLI (demo 14) is a GitHub Release binary of
 `datalium/strata`, found through `STRATA_BIN` or the `PATH`.
@@ -33,7 +33,7 @@ default paths, mode names) without changing the twin too.
   than returning a `Result`) can differ or have moved on. Read the relevant
   source in `dotnet/src/Datalium.Strata` (and `.Storage`, `.SourceGenerators`)
   of [`datalium/strata`](https://github.com/datalium/strata) at the tag the
-  demos use (`v0.9.0-preview.1`), and prefer an existing working example
+  demos use (`v0.9.0-preview.2`), and prefer an existing working example
   (`examples/dotnet-agent` there) over inferring from prose. What the demos
   compile against is the published package, not `main`.
 - **Every demo must actually build and run before it's considered done.**

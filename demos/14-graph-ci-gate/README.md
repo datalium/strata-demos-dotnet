@@ -84,11 +84,11 @@ one trivial state type.
 Your repo needs one small program (a test, a tool) that builds its graphs and
 writes `graph.ToDefinition()` as JSON — this demo's `Repo.ExportAll` is that
 program. Then, with the `strata` binary on the runner (it is a Rust binary
-even for .NET projects; download it from the [GitHub Release](https://github.com/datalium/strata/releases/tag/v0.9.0-preview.1)):
+even for .NET projects; download it from the [GitHub Release](https://github.com/datalium/strata/releases/tag/v0.9.0-preview.2)):
 
 ```yaml
 - run: |
-    curl -fsSL -o strata https://github.com/datalium/strata/releases/download/v0.9.0-preview.1/strata-linux-x64
+    curl -fsSL -o strata https://github.com/datalium/strata/releases/download/v0.9.0-preview.2/strata-linux-x64
     chmod +x strata && sudo mv strata /usr/local/bin/strata
 - run: dotnet run --project tools/ExportGraphs -- graphs/   # writes graphs/*.json via ToDefinition()
 - run: strata graph validate --path graphs                  # non-zero exit fails the job
@@ -102,7 +102,7 @@ dotnet run --project demos/14-graph-ci-gate/14-graph-ci-gate.csproj -- --out ./g
 ```
 
 The `strata` CLI is a **Rust** binary, not a NuGet package. Download the one
-for your platform from the [`v0.9.0-preview.1` release](https://github.com/datalium/strata/releases/tag/v0.9.0-preview.1)
+for your platform from the [`v0.9.0-preview.2` release](https://github.com/datalium/strata/releases/tag/v0.9.0-preview.2)
 (`strata-linux-x64`, `strata-macos-x64` or `strata-windows-x64.exe`; check it
 against `SHA256SUMS.txt`) and either put it on your `PATH` as `strata`
 (`strata.exe` on Windows; `chmod +x` it on Linux and macOS) or set
@@ -115,7 +115,7 @@ demo found, so its path is yours; paths print with `/` on Linux and macOS; the
 last line of scenario 5 quotes the operating system's own error text; blank lines inside the indented CLI output are dropped):
 
 ```
-Using strata CLI: C:\tools\strata.exe (strata 0.9.0-preview.1)
+Using strata CLI: C:\tools\strata.exe (strata 0.9.0-preview.2)
 
 == 1. A broken pull request: seven graphs exported, one CLI call ==
 
