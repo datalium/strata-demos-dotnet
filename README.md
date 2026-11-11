@@ -1,11 +1,11 @@
 # Datalium Strata Demos - .NET
 
-.NET demo suite for Datalium Strata — runnable agentic AI examples from minimal to real-world, built from the published `Datalium.Strata` **0.9** packages (`0.9.0-preview.1`) on [nuget.org](https://www.nuget.org/packages/Datalium.Strata). Strata's code and design docs live in [`datalium/strata`](https://github.com/datalium/strata); its docs site is [stratamesh.dev](https://stratamesh.dev).
+.NET demo suite for Datalium Strata — runnable agentic AI examples from minimal to real-world, built from the published `Datalium.Strata` **0.9** packages (`0.9.0-preview.2`) on [nuget.org](https://www.nuget.org/packages/Datalium.Strata). Strata's code and design docs live in [`datalium/strata`](https://github.com/datalium/strata); its docs site is [stratamesh.dev](https://stratamesh.dev).
 
 ## Prerequisites
 
 - [.NET SDK 10](https://dotnet.microsoft.com/download) or later
-- The `strata` CLI (optional) — only [demo 14](demos/14-graph-ci-gate) needs it, and demos [09](demos/09-cross-language-interop) and [12](demos/12-pluggable-storage) show it reading their checkpoints. It is a Rust binary, not a NuGet package: download `strata-linux-x64`, `strata-macos-x64` or `strata-windows-x64.exe` from the [`v0.9.0-preview.1` release](https://github.com/datalium/strata/releases/tag/v0.9.0-preview.1) (check it against `SHA256SUMS.txt`), and put it on your `PATH` as `strata` or point `STRATA_BIN` at it
+- The `strata` CLI (optional) — only [demo 14](demos/14-graph-ci-gate) needs it, and demos [09](demos/09-cross-language-interop) and [12](demos/12-pluggable-storage) show it reading their checkpoints. It is a Rust binary, not a NuGet package: download `strata-linux-x64`, `strata-macos-x64` or `strata-windows-x64.exe` from the [`v0.9.0-preview.2` release](https://github.com/datalium/strata/releases/tag/v0.9.0-preview.2) (check it against `SHA256SUMS.txt`), and put it on your `PATH` as `strata` or point `STRATA_BIN` at it
 - [Rust](https://rustup.rs) (optional) — only for the Rust halves of the hand-offs in demos [09](demos/09-cross-language-interop) and [12](demos/12-pluggable-storage), which live in the Rust twin repo
 - [Docker](https://docs.docker.com/get-docker/) (optional) — only [demo 12](demos/12-pluggable-storage) needs it, for a throwaway Postgres and Redis (`docker compose up -d --wait`, see [`docker-compose.yml`](docker-compose.yml)); every other demo runs with no external services
 - An `OPENAI_API_KEY` (optional) — only demos [03](demos/03-llm-tool-calling) and [06](demos/06-token-streaming) call a real model. They can use a free local model instead, such as Ollama, with `OPENAI_BASE_URL` and no key (see their READMEs)
@@ -40,7 +40,7 @@ Demos are numbered in rough order of complexity (`01-` simplest, higher numbers 
 The demos use Strata's published NuGet packages: `Datalium.Strata`, `Datalium.Strata.Storage`, `Datalium.Strata.AI` and `Datalium.Strata.Hosting`. The repo uses [central package management](https://learn.microsoft.com/nuget/consume-packages/central-package-management): every version is set once, in [`Directory.Packages.props`](Directory.Packages.props), and Strata's four share one property:
 
 ```xml
-<StrataVersion>0.9.0-preview.1</StrataVersion>
+<StrataVersion>0.9.0-preview.2</StrataVersion>
 ```
 
 A demo's `.csproj` names the packages it needs, without a version:

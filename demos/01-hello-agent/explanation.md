@@ -265,7 +265,7 @@ and [`14-graph-ci-gate`](../14-graph-ci-gate) cover them in depth.
 Strata is referenced as **NuGet packages** from nuget.org. The references
 carry no version: the repo sets every package version once, in
 [`Directory.Packages.props`](../../Directory.Packages.props) (central package
-management), where Strata's packages share `StrataVersion`, `0.9.0-preview.1`.
+management), where Strata's packages share `StrataVersion`, `0.9.0-preview.2`.
 
 The `Datalium.Strata` package also carries the `[StrataTool]` source
 generator. This demo has no `[StrataTool]` methods, so it does nothing here;

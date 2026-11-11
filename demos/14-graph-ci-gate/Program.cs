@@ -354,7 +354,7 @@ internal sealed record GateReport(int Code, string Human, string Stderr, JsonNod
 
 internal static class Gate
 {
-    private const string ReleaseUrl = "https://github.com/datalium/strata/releases/tag/v0.9.0-preview.1";
+    private const string ReleaseUrl = "https://github.com/datalium/strata/releases/tag/v0.9.0-preview.2";
 
     private static string? cli;
 

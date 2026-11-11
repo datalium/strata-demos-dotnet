@@ -5,7 +5,7 @@
        not from a source checkout. Change StrataVersion to move every demo to another Strata release. -->
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <StrataVersion>0.9.0-preview.1</StrataVersion>
+    <StrataVersion>0.9.0-preview.2</StrataVersion>
   </PropertyGroup>
 
   <ItemGroup>
