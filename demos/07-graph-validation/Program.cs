@@ -5,9 +5,10 @@
 //
 // - Broken: Review routes back to Draft on a plain `.AddEdge(...)`, and the exit edge to Archive
 //   has a typo ("Archve"). `.Compile()` throws a GraphCompilationException before any node runs,
-//   with three errors: STRATA_ERR_DANGLING_EDGE (the edge names a node that doesn't exist),
-//   STRATA_ERR_ORPHAN (so Archive is unreachable) and STRATA_ERR_UNGUARDED_CYCLE (nothing bounds
-//   the Draft/Review loop).
+//   with six errors: STRATA_ERR_DANGLING_EDGE (the edge names a node that doesn't exist),
+//   STRATA_ERR_ORPHAN (so Archive is unreachable), STRATA_ERR_UNGUARDED_CYCLE (nothing bounds
+//   the Draft/Review loop), and STRATA_ERR_NO_TERMINAL for Draft, LegalReview and Review (with
+//   the exit misspelled, the loop has no way out, so none of them can reach an end).
 // - Fixed: the retry edge becomes an `.AddConditionalEdge(...)` guarded by a revision count, and
 //   the typo is fixed. Inside the loop, Draft reaches Review two ways (through LegalReview on the
 //   first pass, directly after that), both on plain edges. That branch-and-rejoin is fine: the
@@ -47,7 +48,7 @@ foreach (var error in rejected.Result.Errors)
 }
 
 var errors = rejected.Result.Errors;
-Check(errors.Count == 3, "exactly three errors are reported");
+Check(errors.Count == 6, "exactly six errors are reported");
 Check(
     errors.Any(e => e.Kind == ValidationErrorKind.DanglingEdge && e.Node == "Review" && e.RelatedNode == "Archve"),
     "the Review -> Archve edge is flagged as dangling");
@@ -57,6 +58,10 @@ Check(
 Check(
     errors.Any(e => e.Kind == ValidationErrorKind.UnguardedCycle && e.Node == "Review" && e.RelatedNode == "Draft"),
     "the Draft/Review loop is flagged as an unguarded cycle");
+Check(
+    errors.Where(e => e.Kind == ValidationErrorKind.NoTerminal).Select(e => e.Node)
+        .SequenceEqual(["Draft", "LegalReview", "Review"]),
+    "Draft, LegalReview and Review are flagged as having no path to an end");
 
 // --- Fixed: same nodes, the retry edge guarded, the typo fixed.
 var fixedGraph = Nodes()
