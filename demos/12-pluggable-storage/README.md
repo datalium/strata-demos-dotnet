@@ -160,7 +160,7 @@ dotnet run --project demos/12-pluggable-storage/12-pluggable-storage.csproj -- f
 dotnet run --project demos/12-pluggable-storage/12-pluggable-storage.csproj -- resume postgres
 ```
 
-The `strata` CLI (the binary from the [`v0.9.0-preview.3` release](https://github.com/datalium/strata/releases/tag/v0.9.0-preview.3))
+The `strata` CLI (the binary from the [`v0.9.0` release](https://github.com/datalium/strata/releases/tag/v0.9.0))
 reads the same thread from either server:
 
 ```bash
