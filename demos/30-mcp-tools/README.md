@@ -20,6 +20,12 @@ way a model's tool loop would, as in
 [`26-tool-registry-and-middleware`](../26-tool-registry-and-middleware). The
 Rust twin is
 [`strata-demos-rust/demos/30-mcp-tools`](https://github.com/datalium/strata-demos-rust/tree/main/demos/30-mcp-tools).
+Both print the same lines but two. A `[StrataTool]` wraps its answer in
+`{"result": ...}` and a Rust `#[strata_tool]` returns the string it builds, so
+`quote`'s lines differ. And Rust closes the connection with `close().await`,
+where .NET disposes the client. The server writes its structured content with
+the keys in alphabetical order, the order Rust's `serde_json` prints them in,
+so the MCP results print the same in both.
 
 ## What it demonstrates
 
@@ -98,16 +104,16 @@ Expected output:
     → quote {"sku":"A-100","quantity":1}
     ← {"result":{"sku":"A-100","quantity":1,"total":2.5}}
     → warehouse.lookup_stock {"sku":"A-100"}
-    ← {"sku":"A-100","name":"Widget","on_hand":12}
+    ← {"name":"Widget","on_hand":12,"sku":"A-100"}
   A [StrataTool] returns {"result": ...}. An MCP tool returns its structured content as it is.
 
 === 4. A graph: a node calls the tools, as a model's tool loop would ===
     → warehouse.lookup_stock {"sku":"A-100"}
-    ← {"sku":"A-100","name":"Widget","on_hand":12}
+    ← {"name":"Widget","on_hand":12,"sku":"A-100"}
     → quote {"sku":"A-100","quantity":3}
     ← {"result":{"sku":"A-100","quantity":3,"total":7.5}}
     → warehouse.reserve {"sku":"A-100","quantity":3}
-    ← {"sku":"A-100","reserved":3,"left":9}
+    ← {"left":9,"reserved":3,"sku":"A-100"}
     → warehouse.reserve {"sku":"B-200","quantity":1}
     ← {"error":"only 0 of B-200 on hand"}
   Final state of order-1001:

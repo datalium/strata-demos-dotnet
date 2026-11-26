@@ -130,12 +130,14 @@ public static class WarehouseServer
             return Error($"no such SKU: {sku}");
         }
 
+        // Structured content keeps its keys in alphabetical order, the order the Rust twin prints them in
+        // (serde_json sorts an object's keys), so both demos print the same lines.
         switch (tool)
         {
             case "lookup_stock":
                 return Success(
                     $"{sku} {item.Name}: {item.OnHand} on hand",
-                    new JsonObject { ["sku"] = sku, ["name"] = item.Name, ["on_hand"] = item.OnHand });
+                    new JsonObject { ["name"] = item.Name, ["on_hand"] = item.OnHand, ["sku"] = sku });
             case "reserve":
                 var quantity = arguments?["quantity"]?.GetValue<int>() ?? 0;
                 if (quantity < 1)
@@ -151,10 +153,10 @@ public static class WarehouseServer
                 Stock[sku] = item with { OnHand = item.OnHand - quantity };
                 return Success(
                     $"reserved {quantity} of {sku}",
-                    new JsonObject { ["sku"] = sku, ["reserved"] = quantity, ["left"] = item.OnHand - quantity });
+                    new JsonObject { ["left"] = item.OnHand - quantity, ["reserved"] = quantity, ["sku"] = sku });
             default: // delete_sku
                 Stock.Remove(sku);
-                return Success($"deleted {sku}", new JsonObject { ["sku"] = sku, ["deleted"] = true });
+                return Success($"deleted {sku}", new JsonObject { ["deleted"] = true, ["sku"] = sku });
         }
     }
 
