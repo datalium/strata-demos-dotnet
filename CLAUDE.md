@@ -11,16 +11,16 @@ simplest, higher numbers closer to real-world). See the root
 [demos/README.md](demos/README.md) for the current list.
 
 The demos build from Strata's **published NuGet packages** (`Datalium.Strata`,
-`.Storage`, `.AI`, `.Hosting`), not from a source checkout. Versions are set
-once, in `Directory.Packages.props` (central package management; Strata's
-four share `$(StrataVersion)`), and a demo's `.csproj` has versionless
+`.Storage`, `.AI`, `.Hosting`, and `.Mcp` from 1.0.0-rc.1), not from a source
+checkout. Versions are set once, in `Directory.Packages.props` (central package
+management; Strata's packages share `$(StrataVersion)`), and a demo's `.csproj` has versionless
 `<PackageReference>`s. `nuget.config` restores from nuget.org only. The demos
 target Strata **0.9** (`0.9.0`); `CHANGELOG.md` in
 [`datalium/strata`](https://github.com/datalium/strata) says what changed
 between versions. The `strata` CLI (demo 14) is a GitHub Release binary of
 `datalium/strata`, found through `STRATA_BIN` or the `PATH`.
 
-The Rust twin is the sibling repo `strata-demos-rust` (demos 01–29,
+The Rust twin is the sibling repo `strata-demos-rust` (demos 01–30,
 on 0.9). Demos 09 and 12 hand a thread to it, so
 don't change what crosses the wire there (thread ids, state field names,
 default paths, mode names) without changing the twin too.

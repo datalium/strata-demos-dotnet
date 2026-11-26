@@ -14,6 +14,8 @@
     <PackageVersion Include="Datalium.Strata.Storage" Version="$(StrataVersion)" />
     <PackageVersion Include="Datalium.Strata.AI" Version="$(StrataVersion)" />
     <PackageVersion Include="Datalium.Strata.Hosting" Version="$(StrataVersion)" />
+    <!-- The MCP client (demo 30), new in 1.0.0-rc.1. -->
+    <PackageVersion Include="Datalium.Strata.Mcp" Version="$(StrataVersion)" />
   </ItemGroup>
 
   <ItemGroup>
