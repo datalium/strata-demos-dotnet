@@ -31,13 +31,13 @@ strata-demos-dotnet/
     └── ...
 ```
 
-Demos are numbered in rough order of complexity (`01-` simplest, higher numbers more advanced / closer to real-world). `01`–`14` cover the core engine (graphs, tools, streaming, interrupts, validation, recovery, storage, parallel groups, subgraphs, the CLI); `15`–`29` cover what Strata gained on the way to 0.9 (async nodes and cancellation, loop limits, joins and maps, waits and timers, durable execution, leases, graph identity, agents, model routes, long-term memory, the tool registry, observability, hosting, the scheduler). See [demos/README.md](demos/README.md) for the current list.
+Demos are numbered in rough order of complexity (`01-` simplest, higher numbers more advanced / closer to real-world). `01`–`14` cover the core engine (graphs, tools, streaming, interrupts, validation, recovery, storage, parallel groups, subgraphs, the CLI); `15`–`29` cover what Strata gained on the way to 0.9 (async nodes and cancellation, loop limits, joins and maps, waits and timers, durable execution, leases, graph identity, agents, model routes, long-term memory, the tool registry, observability, hosting, the scheduler); `30` uses an MCP server's tools (1.0.0-rc.1). See [demos/README.md](demos/README.md) for the current list.
 
 **Note on LLMs:** Strata is orchestration infrastructure — the graph engine, tool-calling dispatch, streaming, checkpoints, history — and its `Datalium.Strata.AI` package runs model calls and agents over any `Microsoft.Extensions.AI` `IChatClient` you give it. Every demo runs offline with no API keys, except [`03-llm-tool-calling`](demos/03-llm-tool-calling) and [`06-token-streaming`](demos/06-token-streaming), which wire a real OpenAI client into `Datalium.Strata.AI` (an agent deciding which tool to call, and a model answer streamed token by token) and need `OPENAI_API_KEY` set, or `OPENAI_BASE_URL` pointing at a local OpenAI-compatible server such as Ollama. The other AI demos (`23`–`25`) use small scripted stand-ins for the model and the embedder, written in the demo, so they are deterministic.
 
 ## Dependencies on Strata
 
-The demos use Strata's published NuGet packages: `Datalium.Strata`, `Datalium.Strata.Storage`, `Datalium.Strata.AI` and `Datalium.Strata.Hosting`. The repo uses [central package management](https://learn.microsoft.com/nuget/consume-packages/central-package-management): every version is set once, in [`Directory.Packages.props`](Directory.Packages.props), and Strata's four share one property:
+The demos use Strata's published NuGet packages: `Datalium.Strata`, `Datalium.Strata.Storage`, `Datalium.Strata.AI`, `Datalium.Strata.Hosting` and `Datalium.Strata.Mcp`. The repo uses [central package management](https://learn.microsoft.com/nuget/consume-packages/central-package-management): every version is set once, in [`Directory.Packages.props`](Directory.Packages.props), and Strata's five share one property:
 
 ```xml
 <StrataVersion>0.9.0</StrataVersion>
@@ -72,4 +72,4 @@ dotnet test Strata.Demos.slnx --configuration Release --no-build
 ## Related
 
 - [datalium/strata](https://github.com/datalium/strata) — the core framework (code, design docs, `CHANGELOG.md`, the `strata` CLI)
-- [strata-demos-rust](https://github.com/datalium/strata-demos-rust) — the Rust twin of this repo: demos `01`–`29`, on 0.9, same numbers and stories
+- [strata-demos-rust](https://github.com/datalium/strata-demos-rust) — the Rust twin of this repo: demos `01`–`30`, on 0.9, same numbers and stories

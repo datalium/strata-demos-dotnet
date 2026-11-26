@@ -29,5 +29,6 @@
     <Project Path="demos/27-run-observability/27-run-observability.csproj" />
     <Project Path="demos/28-hosting/28-hosting.csproj" />
     <Project Path="demos/29-run-scheduler/29-run-scheduler.csproj" />
+    <Project Path="demos/30-mcp-tools/30-mcp-tools.csproj" />
   </Folder>
 </Solution>
